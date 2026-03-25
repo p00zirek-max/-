@@ -79,6 +79,11 @@ async function request<T>(
   endpoint: string,
   options: RequestOptions = {},
 ): Promise<T> {
+  // Demo mode: skip fetch entirely, return empty data
+  if (DEMO_MODE) {
+    return getDemoResponse<T>(endpoint);
+  }
+
   const { body, params, headers: customHeaders, ...rest } = options;
 
   // Build URL with query params
