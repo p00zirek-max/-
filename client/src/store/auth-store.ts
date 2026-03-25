@@ -49,14 +49,20 @@ interface AuthState {
   logout: () => void;
 }
 
+/**
+ * Demo mode: auto-login as admin when Firebase is not configured.
+ * Remove this when Firebase Auth is set up.
+ */
+const DEMO_MODE = !import.meta.env.VITE_FIREBASE_PROJECT_ID;
+
 export const useAuthStore = create<AuthState>((set) => ({
-  uid: null,
-  displayName: null,
-  email: null,
-  role: null,
-  token: null,
-  projectId: null,
-  initialized: false,
+  uid: DEMO_MODE ? 'demo-admin' : null,
+  displayName: DEMO_MODE ? 'Администратор (демо)' : null,
+  email: DEMO_MODE ? 'admin@demo.local' : null,
+  role: DEMO_MODE ? 'admin' : null,
+  token: DEMO_MODE ? 'demo-token' : null,
+  projectId: DEMO_MODE ? 'proj_001' : null,
+  initialized: DEMO_MODE ? true : false,
   employeeId: null,
 
   setUser: (user) => {

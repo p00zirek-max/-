@@ -58,7 +58,7 @@ function DefaultRedirect() {
 
 export function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Routes>
         {/* Personal form - no auth, no layout */}
         <Route path="/form/:token" element={<PersonalShiftForm />} />
