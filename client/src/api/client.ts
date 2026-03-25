@@ -10,6 +10,9 @@ const BASE_URL = import.meta.env.VITE_API_URL
   ? `${import.meta.env.VITE_API_URL}/api`
   : '/api';
 
+/** Demo mode: API not available, return null instead of throwing */
+const DEMO_MODE = !import.meta.env.VITE_API_URL && !import.meta.env.VITE_FIREBASE_PROJECT_ID;
+
 /** Get auth token from store or localStorage */
 function getAuthToken(): string | null {
   // Firebase token or personal session token
@@ -72,13 +75,27 @@ async function request<T>(
     headers['X-Personal-Token'] = personalToken;
   }
 
-  const response = await fetch(url.toString(), {
-    ...rest,
-    headers,
-    body: body ? JSON.stringify(body) : undefined,
-  });
+  let response: Response;
+  try {
+    response = await fetch(url.toString(), {
+      ...rest,
+      headers,
+      body: body ? JSON.stringify(body) : undefined,
+    });
+  } catch (err) {
+    // Network error (API unreachable)
+    if (DEMO_MODE) {
+      console.warn(`[Demo] API unavailable: ${endpoint}`);
+      return null as T;
+    }
+    throw err;
+  }
 
   if (!response.ok) {
+    if (DEMO_MODE) {
+      console.warn(`[Demo] API ${response.status}: ${endpoint}`);
+      return null as T;
+    }
     const text = await response.text().catch(() => '');
     throw new ApiError(response.status, response.statusText, text);
   }
