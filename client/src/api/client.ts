@@ -10,8 +10,43 @@ const BASE_URL = import.meta.env.VITE_API_URL
   ? `${import.meta.env.VITE_API_URL}/api`
   : '/api';
 
-/** Demo mode: API not available, return null instead of throwing */
+/** Demo mode: API not available, return empty data instead of throwing */
 const DEMO_MODE = !import.meta.env.VITE_API_URL && !import.meta.env.VITE_FIREBASE_PROJECT_ID;
+
+/** Demo fallback: return empty data matching expected shape */
+const DEMO_RESPONSES: Record<string, unknown> = {
+  '/dashboard/overview': {
+    total_expenses: 0, total_expenses_trend: 0,
+    shifts_today: 0, shifts_week: 0,
+    unfilled: [], overtime_top: [],
+    expenses_by_block: [], daily_expenses: [],
+    scenes_plan: 0, scenes_fact: 0,
+    latest_report_date: null,
+  },
+  '/shifts': [],
+  '/employees': [],
+  '/extras': [],
+  '/timing/shifts': [],
+  '/timing/scenes': [],
+  '/timing/draft': null,
+  '/locations': [],
+  '/expenses': [],
+  '/reports/summary': { rows: [], totals: {} },
+  '/reports/individual': { employee: null, shifts: [], totals: {} },
+  '/reports/by-position': [],
+};
+
+function getDemoResponse<T>(endpoint: string): T {
+  // Match endpoint patterns
+  for (const [pattern, data] of Object.entries(DEMO_RESPONSES)) {
+    if (endpoint.startsWith(pattern)) return data as T;
+  }
+  // Default: production report
+  if (endpoint.startsWith('/reports/production')) {
+    return { date: '', shift_number: 0, sections: [], info: null } as T;
+  }
+  return [] as T;
+}
 
 /** Get auth token from store or localStorage */
 function getAuthToken(): string | null {
@@ -86,7 +121,7 @@ async function request<T>(
     // Network error (API unreachable)
     if (DEMO_MODE) {
       console.warn(`[Demo] API unavailable: ${endpoint}`);
-      return null as T;
+      return getDemoResponse<T>(endpoint);
     }
     throw err;
   }
@@ -94,7 +129,7 @@ async function request<T>(
   if (!response.ok) {
     if (DEMO_MODE) {
       console.warn(`[Demo] API ${response.status}: ${endpoint}`);
-      return null as T;
+      return getDemoResponse<T>(endpoint);
     }
     const text = await response.text().catch(() => '');
     throw new ApiError(response.status, response.statusText, text);
