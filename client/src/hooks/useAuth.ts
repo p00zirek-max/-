@@ -25,6 +25,12 @@ export function useAuth() {
     if (initialized) return;
 
     const init = async () => {
+      // Demo mode: skip API verification, auth-store already has demo values
+      if (!import.meta.env.VITE_FIREBASE_PROJECT_ID && !localStorage.getItem('kinotabel-auth-token') && !localStorage.getItem('kinotabel-personal-token')) {
+        setInitialized();
+        return;
+      }
+
       const authToken = localStorage.getItem('kinotabel-auth-token');
       const personalToken = localStorage.getItem('kinotabel-personal-token');
 
