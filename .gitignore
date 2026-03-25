@@ -1,0 +1,8 @@
+credentials.json
+db-config.json
+node_modules/
+output/
+dist/
+.env
+.env.local
+*.gsheet

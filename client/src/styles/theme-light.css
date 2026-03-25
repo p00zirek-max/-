@@ -1,0 +1,94 @@
+/* === theme-light.css — Light theme values === */
+
+:root[data-theme="light"] {
+  /* Фоны */
+  --color-bg-base: #F8F9FB;
+  --color-bg-raised: #FFFFFF;
+  --color-bg-overlay: #F0F1F5;
+  --color-bg-sidebar: #FFFFFF;
+  --color-bg-input: #FFFFFF;
+  --color-bg-hover: #EDEEF2;
+  --color-bg-active: #E2E4EA;
+  --color-bg-selected: #E8EAFF;
+  --color-bg-skeleton: #E5E7EB;
+
+  /* Бордеры */
+  --color-border-default: #E2E4EA;
+  --color-border-subtle: #EDEEF2;
+  --color-border-focus: #6366F1;
+  --color-border-error: #EF4444;
+
+  /* Текст */
+  --color-text-primary: #111827;
+  --color-text-secondary: #4B5563;
+  --color-text-muted: #9CA3AF;
+  --color-text-disabled: #D1D5DB;
+  --color-text-inverse: #F1F3F8;
+  --color-text-link: #4F46E5;
+
+  /* Акценты */
+  --color-accent-primary: #4F46E5;
+  --color-accent-primary-hover: #6366F1;
+  --color-accent-primary-active: #3730A3;
+  --color-accent-primary-muted: rgba(79,70,229,0.1);
+
+  /* Семантические */
+  --color-success: #16A34A;
+  --color-success-muted: rgba(22,163,74,0.1);
+  --color-warning: #D97706;
+  --color-warning-muted: rgba(217,119,6,0.1);
+  --color-error: #DC2626;
+  --color-error-muted: rgba(220,38,38,0.1);
+  --color-info: #2563EB;
+  --color-info-muted: rgba(37,99,235,0.1);
+
+  /* Статусы смен */
+  --color-shift-planned: #3B82F6;
+  --color-shift-planned-bg: rgba(59,130,246,0.08);
+  --color-shift-actual: #16A34A;
+  --color-shift-actual-bg: rgba(22,163,74,0.08);
+  --color-shift-night: #7C3AED;
+  --color-shift-night-bg: rgba(124,58,237,0.08);
+  --color-shift-overtime: #D97706;
+  --color-shift-overtime-bg: rgba(217,119,6,0.08);
+  --color-shift-locked: #9CA3AF;
+  --color-shift-locked-bg: rgba(156,163,175,0.08);
+
+  /* Роли */
+  --color-role-admin: #E11D48;
+  --color-role-admin-bg: rgba(225,29,72,0.08);
+  --color-role-ams: #D97706;
+  --color-role-ams-bg: rgba(217,119,6,0.08);
+  --color-role-accounting: #16A34A;
+  --color-role-accounting-bg: rgba(22,163,74,0.08);
+  --color-role-producer: #4F46E5;
+  --color-role-producer-bg: rgba(79,70,229,0.08);
+  --color-role-employee: #3B82F6;
+  --color-role-employee-bg: rgba(59,130,246,0.08);
+
+  /* Блоки отчёта */
+  --color-block-crew: #2563EB;
+  --color-block-crew-bg: rgba(37,99,235,0.06);
+  --color-block-actors: #DB2777;
+  --color-block-actors-bg: rgba(219,39,119,0.06);
+  --color-block-transport: #EA580C;
+  --color-block-transport-bg: rgba(234,88,12,0.06);
+  --color-block-extras: #7C3AED;
+  --color-block-extras-bg: rgba(124,58,237,0.06);
+  --color-block-equipment: #0D9488;
+  --color-block-equipment-bg: rgba(13,148,136,0.06);
+  --color-block-extra-staff: #6D28D9;
+  --color-block-extra-staff-bg: rgba(109,40,217,0.06);
+  --color-block-location: #0891B2;
+  --color-block-location-bg: rgba(8,145,178,0.06);
+  --color-block-costume: #EA580C;
+  --color-block-costume-bg: rgba(234,88,12,0.06);
+  --color-block-props: #65A30D;
+  --color-block-props-bg: rgba(101,163,13,0.06);
+
+  /* Тени */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+  --shadow-glow: 0 0 12px rgba(99,102,241,0.15);
+}

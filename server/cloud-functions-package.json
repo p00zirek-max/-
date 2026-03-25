@@ -1,0 +1,19 @@
+{
+  "name": "kinotabel-api",
+  "version": "1.0.0",
+  "description": "Kinotabel API — Google Cloud Functions deployment",
+  "main": "dist/cloud-function.js",
+  "engines": {
+    "node": "20"
+  },
+  "dependencies": {
+    "@kinotabel/shared": "*",
+    "googleapis": "^144.0.0",
+    "decimal.js": "^10.4.3",
+    "uuid": "^9.0.0",
+    "xlsx": "^0.18.5"
+  },
+  "optionalDependencies": {
+    "firebase-admin": "^12.0.0"
+  }
+}
